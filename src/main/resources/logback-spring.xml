@@ -13,8 +13,8 @@
     <appender name="SYS" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 配置滚动的策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 日志名称的格式 -->
-            <fileNamePattern>${LOG_HOME}/awesome_%d{yyyyMMddHH}.log</fileNamePattern>
+            <!-- 日志名称的格式, ${POD_IP:-noPod} 为取环境变量POD_IP的值,若不存在则取默认值noPod -->
+            <fileNamePattern>${LOG_HOME}/awesome_%d{yyyyMMddHH}_${POD_IP:-noPod}.log</fileNamePattern>
             <!-- 保存的最长时间：2天 -->
             <MaxHistory>48</MaxHistory>
             <cleanHistoryOnStart>true</cleanHistoryOnStart>
@@ -29,10 +29,10 @@
     <logger name="org.springframework" level="ERROR" />
     <logger name="org.apache.commons" level="ERROR" />
 
-    <!--接口业务日志：默认打开INFO-->
-
+    <!--默认为INFO-->
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="SYS" />
     </root>
+
 </configuration>
