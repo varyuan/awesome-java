@@ -49,4 +49,13 @@ public class SimpleController {
         logger.info("/locale , locale is:{}", locale);
         return locale;
     }
+
+    // curl localhost:8080/awesome/sleep?seconds=5 -w '\n'
+    // 自定义多少秒后响应
+    @GetMapping("/sleep")
+    public String sleep(int seconds) throws InterruptedException {
+        logger.info("/sleep , seconds: {}", seconds);
+        Thread.sleep(seconds * 1000L);
+        return "sleep end";
+    }
 }
