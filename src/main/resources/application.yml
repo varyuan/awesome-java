@@ -3,9 +3,26 @@ server:
   servlet:
     context-path: /awesome
 spring:
-  output:
-    ansi:
-      enabled: ALWAYS
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss.SSS
     time-zone: GMT+8
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yuan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    # 池配置
+    hikari:
+      maximum-pool-size: 2
+      pool-name: yuan-dev
+# mybatis配置
+mybatis:
+  type-aliases-package: com.varyuan.awesome.po
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # 开启数据表字段自动下划线转驼峰
+    map-underscore-to-camel-case: true
+# 打印sql
+logging:
+  level:
+    com.varyuan.awesome.dao: debug

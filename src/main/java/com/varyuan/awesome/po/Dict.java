@@ -14,20 +14,19 @@
  * limitations under the License.
  */
 
-package com.varyuan.awesome;
+package com.varyuan.awesome.po;
 
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import lombok.Data;
 
-import java.util.TimeZone;
-
-@SpringBootApplication
-@MapperScan(basePackages = "com.varyuan.awesome.dao")
-public class App {
-
-    public static void main(String[] args) {
-        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
-        SpringApplication.run(App.class, args);
-    }
+@Data
+public class Dict {
+    private int id;
+    // 种类
+    private String kind;
+    // 键
+    private String code;
+    // 值
+    private String val;
+    // 注释
+    private String note;
 }
