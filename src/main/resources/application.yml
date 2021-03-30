@@ -6,15 +6,36 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss.SSS
     time-zone: GMT+8
-  datasource:
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/yuan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-    # 池配置
-    hikari:
+#  datasource:
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/yuan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+#    # 池配置
+#    hikari:
+#      maximum-pool-size: 2
+#      pool-name: yuan-dev
+dynamic:
+  defaultDsKey: replica1
+  datasources:
+    source:
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/yuanbak?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+      #  连接池配置
+      #  最大连接数,默认为10
       maximum-pool-size: 2
-      pool-name: yuan-dev
+      #  连接池名字,默认以HikariPool-1,HikariPool-2形式增长
+      pool-name: yuan-source
+    replica1:
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/yuan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+      #  连接池配置
+      maximum-pool-size: 2
+      pool-name: yuan-replica1
 # mybatis配置
 mybatis:
   type-aliases-package: com.varyuan.awesome.po
