@@ -6,7 +6,6 @@
         select *
         from dict
         where id = #{id}
-          and is_del = 0
     </select>
 
     <insert id="insert" parameterType="dict" useGeneratedKeys="true" keyProperty="id">
@@ -15,8 +14,6 @@
     </insert>
 
     <delete id="delete" parameterType="int">
-        update dict
-        set is_del=1
-        where id = #{id}
+        delete from dict where id = #{id}
     </delete>
 </mapper>

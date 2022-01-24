@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/yuan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    # 池配置
+    hikari:
+      minimum-idle: 2
+      maximum-pool-size: 4
+      pool-name: yuan-dev
+# 打印sql
+logging:
+  level:
+    com.varyuan.awesome.dao: debug

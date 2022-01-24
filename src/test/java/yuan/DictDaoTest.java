@@ -28,7 +28,7 @@ import javax.annotation.Resource;
 
 @SpringBootTest(classes = App.class)
 @Slf4j
-@Transactional
+//@Transactional
 public class DictDaoTest {
     @Resource
     private DictDao dictDao;

@@ -2,51 +2,22 @@ server:
   port: 8080
   servlet:
     context-path: /awesome
+    session:
+      cookie:
+        path: /
+        http-only: true
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss.SSS
     time-zone: GMT+8
-#  datasource:
-#    username: root
-#    password: root
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/yuan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-#    # 池配置
-#    hikari:
-#      maximum-pool-size: 2
-#      pool-name: yuan-dev
-dynamic:
-  defaultDsKey: replica1
-  datasources:
-    source:
-      username: root
-      password: root
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://localhost:3306/yuanbak?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-      #  连接池配置
-      #  最大连接数,默认为10
-      maximum-pool-size: 2
-      #  连接池名字,默认以HikariPool-1,HikariPool-2形式增长
-      pool-name: yuan-source
-    replica1:
-      username: root
-      password: root
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://localhost:3306/yuan?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-      #  连接池配置
-      maximum-pool-size: 2
-      pool-name: yuan-replica1
-multi:
-  local:
-    #     Caffeine配置参考:com.github.benmanes.caffeine.cache.CaffeineSpec
-    spec: maximumSize=100,expireAfterWrite=90s
-    settings:
-      - name: dict
-        spec: maximumSize=100,expireAfterWrite=60s
-  remote:
-    spec: ttl=90
-    settings:
-      - name: dict
+  # 默认开发环境 生产时指定环境 java -jar demo.jar --spring.profiles.active=prod
+  profiles:
+    active: dev
+  # 使用caffeine本地缓存,开启缓存命中监控
+  cache:
+    type: caffeine
+    caffeine:
+      spec: recordStats
 # mybatis配置
 mybatis:
   type-aliases-package: com.varyuan.awesome.po
@@ -54,7 +25,3 @@ mybatis:
   configuration:
     # 开启数据表字段自动下划线转驼峰
     map-underscore-to-camel-case: true
-# 打印sql
-logging:
-  level:
-    com.varyuan.awesome.dao: debug

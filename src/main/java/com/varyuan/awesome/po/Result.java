@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 varyuan <varyuan@qq.com>
+ * Copyright 2022 varyuan <varyuan@qq.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,12 @@
  * limitations under the License.
  */
 
-package com.varyuan.awesome.dynamic;
+package com.varyuan.awesome.po;
 
-// 使用threadLocal存储当前会话使用的数据源对应的dsKey
-public final class DsKeyThreadLocal {
+public final class Result {
 
-    private static ThreadLocal<String> DS_KEY = new ThreadLocal<>();
+    private Integer code;
+    private String msg;
+    private Object data;
 
-    private DsKeyThreadLocal() {
-    }
-
-    public static void setDsKey(String dsKey) {
-        DS_KEY.set(dsKey);
-    }
-
-    public static String getDsKey() {
-        return DS_KEY.get();
-    }
 }
