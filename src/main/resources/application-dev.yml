@@ -9,6 +9,9 @@ spring:
       minimum-idle: 2
       maximum-pool-size: 4
       pool-name: yuan-dev
+  # 默认开启缓存, ctrl+f9进行rebuild
+  thymeleaf:
+    cache: false
 # 打印sql
 logging:
   level:

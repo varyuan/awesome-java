@@ -17,9 +17,33 @@
 package com.varyuan.awesome.po;
 
 public final class Result {
-
-    private Integer code;
+    private int code;
     private String msg;
     private Object data;
+
+    private Result(int code, String msg, Object data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+
+    static Result OK = new Result(200, null, null);
+    static Result ERROR = new Result(500, null, null);
+
+    public static Result OK() {
+        return OK;
+    }
+
+    public static Result OK(Object data) {
+        return new Result(200, null, data);
+    }
+
+    public static Result ERROR(String msg) {
+        return new Result(500, msg, null);
+    }
+
+    public static Result ERROR() {
+        return ERROR;
+    }
 
 }

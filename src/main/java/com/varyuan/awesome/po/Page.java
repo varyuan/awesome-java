@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 varyuan <varyuan@qq.com>
+ * Copyright 2022 varyuan <varyuan@qq.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,14 +18,23 @@ package com.varyuan.awesome.po;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
-public class Dict {
-    private Integer id;
-    private String kind;
-    private String code;
-    private String val;
-    private String note;
-    private LocalDateTime createTime;
+public class Page<T> {
+    private int pageNum;
+    private int pageSize;
+    private int total;
+    private int pages;
+    private List<T> list;
+
+    public Page(int pageNum, int pageSize, int total, List<T> list) {
+        this.pageNum = pageNum;
+        this.pageSize = pageSize;
+        this.total = total;
+        this.list = list;
+        this.pages = total / 10;
+        if (total % 10 != 0)
+            this.pages++;
+    }
 }
