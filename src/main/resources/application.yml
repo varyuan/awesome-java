@@ -13,11 +13,11 @@ spring:
   # 默认开发环境 生产时指定环境 java -jar demo.jar --spring.profiles.active=prod
   profiles:
     active: dev
-  # 使用caffeine本地缓存,开启缓存命中监控
+  # 使用caffeine本地缓存,开启缓存命中监控,15分钟过期,
   cache:
     type: caffeine
     caffeine:
-      spec: recordStats
+      spec: recordStats,refreshAfterWrite=PT15M,maximumSize=30
 # mybatis配置
 mybatis:
   type-aliases-package: com.varyuan.awesome.po
