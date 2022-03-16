@@ -1,0 +1,3 @@
+# 外挂static, templates, 默认缓存,需要restart
+spring.thymeleaf.prefix=file:/home/mall/templates/
+spring.resources.static-locations=file:/home/mall/static/
