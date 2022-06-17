@@ -9,6 +9,17 @@ spring:
       minimum-idle: 2
       maximum-pool-size: 4
       pool-name: yuan-dev
+  redis:
+    host: 172.25.222.112
+    port: 6379
+#    password: 123456
+    database: 0 # 几号库
+    lettuce:
+      pool:
+        max-active: 3 # 最大连接
+        max-idle: 3 # 最大空闲连接
+        min-idle: 0 # 最小空闲连接
+        max-wait: 100ms # 连接等待时间
   # 默认开启缓存, ctrl+f9进行rebuild
   thymeleaf:
     cache: false
