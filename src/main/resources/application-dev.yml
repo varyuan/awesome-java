@@ -1,3 +1,5 @@
+upload:
+  path: E:\gitwork\awesome-java\upload\
 spring:
   datasource:
     username: root
@@ -12,7 +14,7 @@ spring:
   redis:
     host: 172.25.222.112
     port: 6379
-#    password: 123456
+    #    password: 123456
     database: 0 # 几号库
     lettuce:
       pool:
