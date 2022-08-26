@@ -17,6 +17,7 @@
 package com.varyuan.awesome.web;
 
 
+import com.varyuan.awesome.util.IpUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,9 +43,9 @@ public class SimpleController {
     // 返回请求头 X-Forwarded-For 的值
     @GetMapping("/clientIp")
     public String clientIp(HttpServletRequest httpServletRequest) {
-        String headerVal = httpServletRequest.getHeader("X-Forwarded-For");
-        logger.info("/clientIp , from {}", headerVal);
-        return headerVal;
+        String clientIp = IpUtil.getClientIp(httpServletRequest);
+        logger.info("/clientIp , from {}", clientIp);
+        return clientIp;
     }
 
     // curl localhost:8080/awesome/env
